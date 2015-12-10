@@ -46,5 +46,11 @@ group :development do
 
   # User authentication
   gem 'devise'
+
+  # Development help
+  gem 'quiet_assets', group: :development
+  gem 'better_errors', group: :development
+  gem 'binding_of_caller', group: :development
+
 end
 
