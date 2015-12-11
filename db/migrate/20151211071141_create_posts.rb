@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.string :p_type
       t.string :data
-      t.integer :score
+      t.integer :score, :default => 0
       t.references :board, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
 
