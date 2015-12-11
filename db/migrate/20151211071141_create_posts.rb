@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
       t.string :title
-      t.string :type
+      t.string :p_type
       t.string :data
       t.integer :score
       t.references :board, index: true, foreign_key: true
