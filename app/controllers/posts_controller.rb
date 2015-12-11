@@ -14,7 +14,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @board = Board.find params[:board_id]
+    @post = @board.posts.new
+    @post.user_id = current_user.id
   end
 
 =begin
@@ -25,9 +27,17 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
+    @board = Board.find params[:board_id]
+    @post = @board.posts.new(post_params)
+    @post.user_id = current_user.id
+
+    if @post.save
+      redirect_to board_path(@board), notice: 'Post successfully created'
+    else
+      render :new
+    end
   end
 
-=begin
   # PATCH/PUT /posts/1
   def update
     respond_to do |format|
@@ -39,6 +49,7 @@ class PostsController < ApplicationController
     end
   end
 
+=begin
   # DELETE /posts/1
   def destroy
     @post.destroy
@@ -46,6 +57,7 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
     end
   end
+=end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -55,7 +67,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params[:post]
+      params.require(:post).permit(:title, :p_type, :data)
     end
-=end
 end

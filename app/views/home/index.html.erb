@@ -1,1 +1,44 @@
-<%= link_to "Create Post", new_post_path %>
+<h1>Listing Boards</h1>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @boards.each do |board| %>
+    <tr>
+      <td><%= link_to board.name, board_path(board) %></td>
+      <td><%= board.user.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if user_signed_in? %>
+  <%= link_to 'New Board', new_board_path %>
+<% end %>
+
+<h1>Listing Posts</h1>
+
+<table border='1'>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Data</th>
+      <th>Ownder</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.p_type %></td>
+      <td><%= post.data %></td>
+      <td><%= post.user.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

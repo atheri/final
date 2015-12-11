@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root :to => "home#index"
+  get 'home', to: 'home#index', as: 'home'
+  root 'home#index'
 
-  resources :home
-  resources :posts
+  resources :boards do
+    resources :posts, shallow: true
+  end
 
 end
