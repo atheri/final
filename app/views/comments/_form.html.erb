@@ -1,3 +1,4 @@
+
 <%= form_for([@post, @comment]) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
@@ -13,9 +14,9 @@
 
   <div class="field">
     <%= f.label :comment %><br />
-    <%= f.text_field :data %>
+    <%= f.text_area :data %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style="width: auto; float: left;">
+    <%= f.submit :class => "btn btn-default btn-sm" %>
   </div>
 <% end %>

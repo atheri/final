@@ -11,8 +11,11 @@
 
 .alert {
   position: absolute;
-  left: 15%;
+  left: 50%;
+  top: 0%;
   z-index: 9999;
+
+  transform: translate(-50%, 0%)
 }
 
 .vote {

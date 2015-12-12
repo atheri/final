@@ -17,9 +17,9 @@
   </div>
   <div class="field">
     <%= f.label :Description %><br>
-    <%= f.text_field :desc %>
+    <%= f.text_area :desc %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" style="width: auto; float: left;">
+    <%= f.submit :class => "btn btn-default btn-sm" %>
   </div>
 <% end %>
