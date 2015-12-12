@@ -3,6 +3,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   def show
+    @posts = @board.posts
   end
 
   # GET /boards/new
