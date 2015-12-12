@@ -33,6 +33,12 @@ class BoardsController < ApplicationController
     end
   end
 
+  # DELETE /boards/1
+  def destroy
+    @board.destroy
+    redirect_to root_path
+  end
+
   private
   def set_board
     @board = Board.find(params[:id])

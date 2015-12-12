@@ -1,4 +1,5 @@
 <h1><%= @board.name %>: SHOW</h1>
+<h6><%= @board.user.email %></h6>
 
 <table border='1'>
   <thead>
@@ -24,6 +25,9 @@
 
 <% if user_signed_in? %>
   <%= link_to 'New Post', new_board_post_path(@board) %> |
-  <%= link_to 'Edit', edit_board_path(@board) %> |
+  <% if @board.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_board_path(@board) %> |
+    <%= link_to 'Destroy', @board, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <% end %>
 <% end %>
 <%= link_to 'Back', root_path %>
