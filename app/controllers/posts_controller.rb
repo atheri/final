@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :downvote, :upvote]
 
 =begin
   # GET /posts
@@ -49,6 +49,16 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to :back, notice: 'Post successfully deleted.'
+  end
+
+  def upvote
+    @post.update_attribute(:score, @post.score+1)
+    redirect_to :back
+  end
+  
+  def downvote
+    @post.update_attribute(:score, @post.score-1)
+    redirect_to :back
   end
 
   private

@@ -13,7 +13,7 @@
 <div class="col-sm-3">
   <h3><%= @board.name %>
     <small>
-      <% if @board.user_id == current_user.id %>
+      <% if user_signed_in? && @board.user_id == current_user.id %>
         (<%= link_to 'edit', edit_board_path(@board) %> | <%= link_to 'delete', @board, method: :delete, data: { confirm: 'Are you sure?' } %>)
       <% end %>
     </small>

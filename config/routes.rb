@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     resources :posts, shallow: true
   end
 
+  get "posts/:id/upvote" => "posts#upvote"
+  get "posts/:id/downvote" => "posts#downvote"
+
 end

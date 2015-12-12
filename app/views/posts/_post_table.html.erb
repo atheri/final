@@ -2,20 +2,35 @@
   <tbody>
   <% @posts.each do |post| %>
     <tr><td>
-        <div class="row col-sm-12">
-          <%= link_to post.title, post_path(post) %>
-        </div>
-        <div class="row tagline">
-          <div class="col-sm-4">
-            <%= post.board.name %>
+        <div class="row">
+          <div class="col-xs-1">
+            <div class="row">
+              <div class="col-xs-6">
+                <% if user_signed_in? %>
+                  <%= link_to '&uarr;'.html_safe, { :controller => "posts", :action => "upvote", :id => post.id}, :class => "btn btn-default btn-xs" %>
+                  <%=  link_to '&darr;'.html_safe, { :controller => "posts", :action => "downvote", :id => post.id}, :class => "btn btn-default btn-xs" %>
+                <% end %>
+              </div>
+              <div class="col-xs-6 score">
+                <%= post.score %>
+              </div> 
+            </div>
           </div>
-          <div class="col-sm-4">
-            <%= post.user.email %>
-          </div>
-          <div class="col-sm-4">
-            <% if user_signed_in? && post.user_id == current_user.id %>
-              <%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
+          <div class="col-xs-11">
+            <%= link_to post.title, post_path(post) %>
+            <div class="row tagline">
+              <div class="col-xs-4">
+                <%= post.board.name %>
+              </div>
+              <div class="col-xs-4">
+                <%= post.user.email %>
+              </div>
+              <div class="col-xs-4">
+                <% if user_signed_in? && post.user_id == current_user.id %>
+                  <%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
     </td></tr>

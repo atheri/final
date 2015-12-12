@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   def index
     @boards = Board.all
     @posts = Post.all
+    @posts = @posts.sort_by{ |e| -e[:score]}
   end
 
 =begin
