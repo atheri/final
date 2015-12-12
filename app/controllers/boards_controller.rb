@@ -4,6 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   def show
     @posts = @board.posts
+    @posts = @posts.sort_by{ |e| -e[:score]}
   end
 
   # GET /boards/new

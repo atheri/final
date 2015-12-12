@@ -7,7 +7,7 @@
       <% end %>
     </small>
   </h2>
-  <h6>Submitted By: <%= @post.user.email %></h6>
+  <h6> Submitted By: <%= @post.user.email %> to <%=link_to @post.board.name, board_path(@post.board) =%></h6>
   <div class="panel panel-default">
     <div class="panel-body">
       <%= @post.data %>
