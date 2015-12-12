@@ -11,12 +11,13 @@
 
 </div>
 <div class="col-sm-3">
-  <h4><%= @board.name %>
+  <h3><%= @board.name %>
     <small>
       <% if @board.user_id == current_user.id %>
         (<%= link_to 'edit', edit_board_path(@board) %> | <%= link_to 'delete', @board, method: :delete, data: { confirm: 'Are you sure?' } %>)
       <% end %>
     </small>
-  </h4>
+  </h3>
+  <h5><%= @board.desc %></h5>
 </div>
 

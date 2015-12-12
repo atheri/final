@@ -4,3 +4,9 @@
 .tagline {
   font-size: x-small;
 }
+
+.alert {
+  position: absolute;
+  left: 15%;
+  z-index: 9999;
+}

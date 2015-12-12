@@ -7,6 +7,21 @@
 <%= csrf_meta_tags %>
 </head>
 <body>
+<!-- ALERT & NOTICE -->
+<% if flash[:notice] %>
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>  
+    <%= notice %>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>  
+    <%= alert %>
+  </div>
+<% end %>
+<% flash[:notice] = flash[:alert] = nil %>
+
 <div id="main-container" class="container">
   <div class="row">
     <!-- NAVBAR -->
@@ -15,6 +30,7 @@
         <div class="navbar-header">
           <%= link_to "WS Name", root_path, class: "navbar-brand" %>
         </div>
+        
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li><p class="navbar-text"><%= current_user.email %></p></li>
@@ -27,14 +43,6 @@
       </div>
     </nav>
 
-    <!-- ALERT & NOTICE -->
-    <% if flash[:notice] %>
-      <div class="alert alert-success"><%= notice %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger"><%= alert %></div>
-    <% end %>
-    <% flash[:notice] = flash[:alert] = nil %>
   </div>
   <div class="row">
     <%= yield %>

@@ -13,7 +13,7 @@
             <%= post.user.email %>
           </div>
           <div class="col-sm-4">
-            <% if post.user_id == current_user.id %>
+            <% if user_signed_in? && post.user_id == current_user.id %>
               <%= link_to 'delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
           </div>
