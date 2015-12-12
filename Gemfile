@@ -56,5 +56,7 @@ group :development do
   gem 'bootstrap-sass', '~> 3.2.0'
   gem 'autoprefixer-rails'
 
+  # For making seed files from the database
+  gem 'seed_dump'
 end
 
