@@ -52,5 +52,9 @@ group :development do
   gem 'better_errors', group: :development
   gem 'binding_of_caller', group: :development
 
+  # Bootstrap
+  gem 'bootstrap-sass', '~> 3.2.0'
+  gem 'autoprefixer-rails'
+
 end
 
