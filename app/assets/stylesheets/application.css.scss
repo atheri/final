@@ -1,8 +1,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.post_title {
+  font-size: medium;
+}
+
 .tagline {
-  font-size: x-small;
+  font-size: small;
 }
 
 .alert {

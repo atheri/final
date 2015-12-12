@@ -1,24 +1,49 @@
-<h1><%= @post.title %>: SHOW</h1>
-<h4><%= @post.user.email %></h1>
+<div class="col-sm-12">
+  <h2>
+    <%= @post.title %>
+    <small>
+      <% if user_signed_in? && @post.user_id == current_user.id %>
+        <%= link_to '(edit)', edit_post_path(@post) %>
+      <% end %>
+    </small>
+  </h2>
+  <h6>Submitted By: <%= @post.user.email %></h6>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= @post.data %>
+    </div>
+  </div>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Comment</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @post.comments.each do |comment| %>
+      <tr>
+        <div class="row">
+          <td class="col-sm-1">
+            <%= comment.user.email %>
+          </td>
+          <td class="col-sm-10">
+            <%= comment.data %>
+          </td>
+          <td class="col-sm-1">
+            <% if user_signed_in? && comment.user_id == current_user.id %>
+              <%= link_to 'delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </div>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-<table border='1'>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Comment: Data</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @post.comments.each do |comment| %>
-    <tr>
-      <td><%= comment.user.email %></td>
-      <td><%= comment.data %></td>
-    </tr>
+  <% if user_signed_in? %>
+    <%= link_to 'New Comment', new_post_comment_path(@post) %> |
   <% end %>
-  </tbody>
-</table>
-
-<% if user_signed_in? %>
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-<% end %>
-<%= link_to 'Back', root_path %>
+  <%= link_to 'Back', root_path %>
+</div>
