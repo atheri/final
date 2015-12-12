@@ -19,11 +19,9 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
   end
 
-=begin
   # GET /posts/1/edit
   def edit
   end
-=end
 
   # POST /posts
   def create

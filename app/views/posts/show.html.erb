@@ -1,4 +1,24 @@
 <h1><%= @post.title %>: SHOW</h1>
+<h4><%= @post.user.email %></h1>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<table border='1'>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comment: Data</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @post.comments.each do |comment| %>
+    <tr>
+      <td><%= comment.user.email %></td>
+      <td><%= comment.data %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back', root_path %>
